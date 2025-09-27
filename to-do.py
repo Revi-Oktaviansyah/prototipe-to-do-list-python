@@ -3,10 +3,8 @@ def lihat_tugas(daftar_tugas):
         print("Anda belum punya tugas")
     else:
         print("Berikut tugas Anda:")
-        nomor = 1
-        for dt in daftar_tugas:
+        for nomor, dt in enumerate(daftar_tugas, 1):
             print(nomor, dt)
-            nomor += 1
 
 def tambah_tugas(daftar_tugas, tugas_baru):
     daftar_tugas.append(tugas_baru)
@@ -18,10 +16,8 @@ def hapus_tugas(daftar_tugas):
         return
     else:
         print("Berikut daftar tugas Anda")
-        nomor = 1
-        for dt in daftar_tugas:
+        for nomor, dt in enumerate(daftar_tugas, 1):
             print(nomor, dt)
-            nomor += 1
         while True:
             opsi_hapus_tugas = (input("Masukan nomor tugas yang akan dihapus (Masukan 'X' untuk membatalkan): ")).lower()
             if opsi_hapus_tugas == "x":
@@ -30,8 +26,7 @@ def hapus_tugas(daftar_tugas):
             elif opsi_hapus_tugas.isdigit():
                 nomor_hapus_tugas = (int(opsi_hapus_tugas)) 
                 if 1 <= nomor_hapus_tugas <= len(daftar_tugas):
-                    tugas_dihapus = daftar_tugas[nomor_hapus_tugas - 1]
-                    del daftar_tugas[nomor_hapus_tugas - 1]
+                    tugas_dihapus = daftar_tugas.pop(nomor_hapus_tugas - 1)
                     print(f"Tugas {tugas_dihapus} telah dihapus!")
                     break
                 else:
@@ -49,6 +44,7 @@ while running:
     print("4. Keluar")
     
     opsi = input("Pilih opsi (1-4): ")
+
     if opsi == "1":
         lihat_tugas(daftar_tugas)
     elif opsi == "2":
